@@ -21,7 +21,16 @@ class RecipeListViewModel @Inject constructor(private val getAllRecipeUseCase: G
     val uiState: StateFlow<RecipeList.UIState> get() = _uiState.asStateFlow()
 
 
-    fun search(query: String) = viewModelScope.launch {
+    fun onEvent(event: RecipeList.Event) {
+        when (event) {
+            is RecipeList.Event.SearchRecipe -> {
+                search(event.query)
+            }
+        }
+    }
+
+
+    private fun search(query: String) = viewModelScope.launch {
         getAllRecipeUseCase.invoke(query).onEach { result ->
             when (result) {
                 is NetworkResult.Loading -> {
@@ -60,6 +69,7 @@ object RecipeList {
     }
 
     sealed interface Event {
+        data class SearchRecipe(val query: String) : Event
 
     }
 }
