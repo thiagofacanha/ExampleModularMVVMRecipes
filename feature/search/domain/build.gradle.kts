@@ -47,5 +47,6 @@ dependencies {
 
     implementation(libs.dagger.hilt)
     kapt(libs.dagger.kapt)//to use this kapt we must add lines #4 and #5 of this file
-//    implementation(libs.javapoet) // <-- added this for fixing error with dagger hilt dependency
+    implementation(libs.room.ktx)
+    implementation(libs.room.compiler)
 }

@@ -61,7 +61,7 @@ fun RecipeListScreen(
     LaunchedEffect(key1 = viewModel.navigation){//this "LaunchedEffect" will launch the code and if a new key1 is called it will cancel all coroutines and call again with new id
         viewModel.navigation.flowWithLifecycle(lifecycleOwner.lifecycle).collectLatest {
             when(it){
-                is RecipeList.Navigation.OpenRecipeDetails -> {
+                is RecipeList.Navigation.GoToRecipeDetails -> {
                    navHostController.navigate(NavigationRoute.RecipeDetails.sendId(it.id))
                 }
             }
