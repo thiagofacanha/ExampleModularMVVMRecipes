@@ -36,7 +36,7 @@ class RecipeListViewModel @Inject constructor(private val getAllRecipeUseCase: G
 
             is RecipeList.Event.GoToRecipeDetails -> {
                viewModelScope.launch {
-                   _navigation.send(RecipeList.Navigation.OpenRecipeDetails(event.id))
+                   _navigation.send(RecipeList.Navigation.GoToRecipeDetails(event.id))
                }
             }
         }
@@ -78,7 +78,7 @@ object RecipeList {
     )
 
     sealed interface Navigation {
-        data class OpenRecipeDetails(val id: String) : Navigation
+        data class GoToRecipeDetails(val id: String) : Navigation
     }
 
     sealed interface Event {

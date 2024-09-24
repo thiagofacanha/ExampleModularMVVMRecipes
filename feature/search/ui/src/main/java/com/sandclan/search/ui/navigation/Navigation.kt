@@ -2,7 +2,6 @@ package com.sandclan.search.ui.navigation
 
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.sandclan.common.navigation.FeatureApi
@@ -44,10 +43,28 @@ class SearchFeatureApiImpl : SearchFeatureApi {
                     }
                 }
 
-                RecipeDetailsScreen(viewModel = viewModel)
+                RecipeDetailsScreen(
+                    viewModel = viewModel,
+                    navHostController = navHostController,
+                    onNavigationClick = { viewModel.onEvent(RecipeDetails.Event.GoToRecipeListScreen) },
+                    onDeleteClick = { recipe ->
+                        viewModel.onEvent(
+                            RecipeDetails.Event.DeleteRecipe(
+                                recipe
+                            )
+                        )
+                    },
+                    onFavoriteClick = { recipe ->
+                        viewModel.onEvent(
+                            RecipeDetails.Event.InsertRecipe(
+                                recipe
+                            )
+                        )
+                    },
+                )
+
             }
-
         }
-    }
 
+    }
 }

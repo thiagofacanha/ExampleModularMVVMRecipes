@@ -26,7 +26,7 @@ fun RecipeDTO.toDomain(): RecipeDetails {
         strMealThumb = strMealThumb,
         strCategory = strCategory,
         strTags = strTags ?: "",
-        strYoutube = strYoutube ?: "",
+        strYouTube = strYoutube ?: "",
         strInstructions = strInstructions,
         ingredientsPair = this.getIngredientPairsWithItsMeasure()
     )

@@ -1,13 +1,16 @@
 package com.sandclan.search.data.repository
 
+import com.sandclan.search.data.local.RecipeDao
 import com.sandclan.search.data.mappers.toDomain
 import com.sandclan.search.data.remote.SearchApiService
 import com.sandclan.search.domain.model.Recipe
 import com.sandclan.search.domain.model.RecipeDetails
 import com.sandclan.search.domain.repository.SearchRepository
+import kotlinx.coroutines.flow.Flow
 
 class SearchRepositoryImpl(
-    private val searchApiService: SearchApiService
+    private val searchApiService: SearchApiService,
+    private val recipeDao: RecipeDao
 ) : SearchRepository {
 
     override suspend fun getRecipes(s: String): Result<List<Recipe>> {
@@ -42,5 +45,17 @@ class SearchRepositoryImpl(
         } catch (e: Exception) {
             Result.failure(e)
         }
+    }
+
+    override suspend fun insertRecipe(recipe: Recipe) {
+        recipeDao.insertRecipe(recipe)
+    }
+
+    override suspend fun deleteRecipe(recipe: Recipe) {
+        recipeDao.deleteRecipe(recipe)
+    }
+
+    override fun getAllRecipes(): Flow<List<Recipe>> {
+        return recipeDao.getAllRecipes()
     }
 }

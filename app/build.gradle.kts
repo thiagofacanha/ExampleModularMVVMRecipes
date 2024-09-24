@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.engage.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -79,4 +80,6 @@ dependencies {
     implementation(libs.dagger.hilt)
     kapt(libs.dagger.kapt)//to use this kapt we must add lines #4 and #5 of this file
 //    implementation(libs.javapoet) // <-- added this for fixing error with dagger hilt dependency
+    implementation(libs.room.ktx)
+    implementation(libs.room.compiler)
 }
